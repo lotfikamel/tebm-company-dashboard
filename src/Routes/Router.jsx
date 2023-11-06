@@ -14,6 +14,8 @@ const Logout = React.lazy(() => import('../Pages/Logout/LogoutPage'));
 
 const NotFoundPage = React.lazy(() => import('../Pages/NotFound/NotFoundPage'));
 
+import DriversRoutes from './DriversRoutes';
+
 const Router = () => {
 
 	const routes = useRoutes([
@@ -32,6 +34,8 @@ const Router = () => {
 			path : '/logout',
 			element : <AuthGuard element={<Logout/>} required={true}/>
 		},
+
+		...DriversRoutes,
 
 		{
 			path : '*',

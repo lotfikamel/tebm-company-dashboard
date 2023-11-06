@@ -4,21 +4,20 @@ import moment from 'moment';
 
 import { NavLink, useLocation } from "react-router-dom";
 
-import useAuthStore from '../Store/useAuthStore';
+import { useCompanyProfileQuery } from '../Queries/ProfileQueries';
 
-import { DollarSign, Home, LogOut, Settings, Shield, Truck, User, Users } from "react-feather";
+import { DollarSign, Home, LogOut, Truck, Users } from "react-feather";
 
 import MaterialSymbolIcon from './MaterialSymbolIcon';
 
 import { closeDrawer, modalAction } from '../ComponentsUtilities/ComponentsUtilities';
 
-import { APP_NAME } from '../Constants/Constants';
-
-import Logo from '../Assets/logo.png';
-
 const Drawer = () => {
 
-	const user = useAuthStore(state => state.user);
+	const { data : profile } = useCompanyProfileQuery({
+
+		refetchOnMount : false
+	});
 
 	const location = useLocation();
 
@@ -35,19 +34,27 @@ const Drawer = () => {
 
 			<ul className="menu p-4 w-72 lg:w-72 xl:w-80 bg-base-100 text-base-content">
 
-				<div className="flex justify-center">
+				{ profile && (
 
-					<img src={Logo} alt={APP_NAME} className="w-32 h-32 rounded-full"/>
+					<div className="space-y-2 mb-6">
 
-				</div>
+						<div className="flex justify-center">
 
-				<div className="text-center my-4 space-y-1">
+							<img src={profile.photo.src} alt={profile.name} className="w-24 h-24 rounded-full"/>
 
-					<div className="text-xl font-medium">{ user.name }</div>
+						</div>
 
-					<div className="text-stone-400 first-letter:uppercase">admin depuis { moment(user.creationDate).format('DD MMMM YYYY') }</div>
+						<div className="text-center my-4 space-y-1">
 
-				</div>
+							<div className="text-xl font-medium">{ profile.name }</div>
+
+							<div className="text-stone-400 first-letter:uppercase">depuis { moment(profile.creationDate).format('DD MMMM YYYY') }</div>
+
+						</div>
+
+					</div>
+
+				) }
 
 				<li>
 
@@ -87,18 +94,6 @@ const Drawer = () => {
 
 				<li>
 
-					<NavLink to="/companies" className="font-medium">
-
-						<MaterialSymbolIcon name="emoji_transportation" size={25}/>
-
-						Entreprises de transport
-
-					</NavLink>
-
-				</li>
-
-				<li>
-
 					<NavLink to="/rides" className="font-medium">
 
 						<MaterialSymbolIcon name="near_me" size={25}/>
@@ -111,11 +106,11 @@ const Drawer = () => {
 
 				<li>
 
-					<NavLink to="/users" className="font-medium">
+					<NavLink to="/revenues" className="font-medium">
 
-						<User size={23}/>
+						<MaterialSymbolIcon name="payments"/>
 
-						Utilisateurs
+						Revenus
 
 					</NavLink>
 
@@ -128,30 +123,6 @@ const Drawer = () => {
 						<DollarSign size={23}/>
 
 						Dettes
-
-					</NavLink>
-
-				</li>
-
-				<li>
-
-					<NavLink to="/admins" className="font-medium">
-
-						<Shield size={23}/>
-
-						Administrateurs
-
-					</NavLink>
-
-				</li>
-
-				<li>
-
-					<NavLink to="/settings" className="font-medium">
-
-						<Settings size={23}/>
-
-						Paramètres
 
 					</NavLink>
 

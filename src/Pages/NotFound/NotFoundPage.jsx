@@ -2,6 +2,8 @@ import BackNavbar from '../../Components/BackNavbar';
 
 import notFoundIllustration from '../../Assets/Illustrations/not-found.svg';
 
+import { APP_NAME } from '../../Constants/Constants';
+
 const NotFoundPage = () => {
 
 	return (
@@ -14,7 +16,7 @@ const NotFoundPage = () => {
 
 				<div className="text-center">
 
-					<h1 className="font-semibold first-letter:uppercase">page introuvable</h1>
+					<h1 className="font-bold first-letter:uppercase">page introuvable</h1>
 
 					<div className="flex justify-center">
 
@@ -22,7 +24,7 @@ const NotFoundPage = () => {
 
 					</div>
 
-					<p className="first-letter:uppercase text-2xl">la page que vous cherchez n'existe pas sur <strong>{ window.APP_NAME }</strong>.</p>
+					<p className="first-letter:uppercase text-2xl">la page que vous cherchez n'existe pas sur <strong>{ APP_NAME }</strong>.</p>
 
 				</div>
 				
