@@ -1,12 +1,8 @@
 import moment from 'moment';
 
-import { ArrowRight } from 'react-feather';
-
-import { Link } from 'react-router-dom';
-
 import { formatPrice } from '../ComponentsUtilities/ComponentsUtilities';
 
-const Debt = ({ debt, payLink }) => {
+const Debt = ({ debt }) => {
 
 	return (
 
@@ -27,18 +23,6 @@ const Debt = ({ debt, payLink }) => {
 				<div className="text-stone-500">Courses</div>
 
 				<div className="font-bold">{ debt.totalRides}</div>
-
-			</div>
-
-			<div>
-				
-				<Link to={payLink} className="btn btn-sm btn-primary space-x-2">
-
-					<span>régler</span>
-
-					<ArrowRight size={16}/>
-
-				</Link>
 
 			</div>
 

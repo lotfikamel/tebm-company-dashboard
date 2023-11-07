@@ -12,7 +12,7 @@ import { FetchErrorAlert } from "../../Components/Alerts";
 
 import GridList from "../../Components/GridList";
 
-import { formatDriverPayLink, formatPrice } from "../../ComponentsUtilities/ComponentsUtilities";
+import { formatPrice } from "../../ComponentsUtilities/ComponentsUtilities";
 
 const Stat = ({ title, stat }) => {
 
@@ -58,20 +58,10 @@ const DriverDebtsPage = () => {
 
 	const { driverId } = useParams();
 
-	const { data : debts, isLoading, isError, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useDriverDebtsQuery({
+	const { data : debts = [], isLoading, isError, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useDriverDebtsQuery({
 
 		driverId
 	});
-
-	const formatPayLink = (debt) => {
-
-		return formatDriverPayLink({
-
-			driverId,
-			startDate : debt.creationDate,
-			endDate : debt.creationDate
-		});
-	}
 
 	return (
 
@@ -96,7 +86,7 @@ const DriverDebtsPage = () => {
 							data={debts}
 							renderElements={debt => (
 								
-								<Debt key={debt._id} debt={debt} payLink={formatPayLink(debt)}/>
+								<Debt key={debt._id} debt={debt}/>
 							)}
 							fetchNextPage={fetchNextPage}
 							isFetchingNextPage={isFetchingNextPage}

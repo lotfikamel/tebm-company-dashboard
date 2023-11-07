@@ -2,7 +2,7 @@ import moment from "moment";
 
 import classNames from "classnames";
 
-import { Calendar, CheckCircle, ExternalLink, Hash, Key, Navigation, Phone, Star } from "react-feather";
+import { Calendar, ExternalLink, Hash, Key, Navigation, Phone, Star } from "react-feather";
 
 import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 
@@ -22,7 +22,7 @@ import DriverActions, { DetachEngineAction } from "./DriverActions";
 
 import DriverStatus from "./DriverStatus";
 
-import { formatFullName, openLightbox, formatDriverAccountType, openDirectionInMap } from "../../ComponentsUtilities/ComponentsUtilities";
+import { formatFullName, openLightbox, openDirectionInMap } from "../../ComponentsUtilities/ComponentsUtilities";
 
 const DriverProfilePage = () => {
 
@@ -40,11 +40,6 @@ const DriverProfilePage = () => {
 		{
 			path : 'reviews',
 			label : 'Avis & notes'
-		},
-
-		{
-			path : 'revenues',
-			label : 'Revenus'
 		},
 
 		{
@@ -79,7 +74,7 @@ const DriverProfilePage = () => {
 
 					<>
 
-						<h1 className="font-semibold mb-6">Profil chauffeur</h1>
+						<h1 className="font-bold mb-6">Profil chauffeur</h1>
 
 						<div className="grid gap-6 grid-cols-12">
 
@@ -112,17 +107,6 @@ const DriverProfilePage = () => {
 									</div>
 
 									<div className="space-y-2 text-stone-600 text-lg">
-
-										{ profile.companyId && (
-
-											<div className="flex text-lg items-center text-blue-500">
-
-												<CheckCircle/>
-
-												<div className="ml-2">{ formatDriverAccountType(profile.type) }</div>
-
-											</div>
-										) }
 
 										<div className="flex items-center text-lg">
 
@@ -236,39 +220,11 @@ const DriverProfilePage = () => {
 
 								) }
 
-								{ profile.company && (
-
-									<div className="shadow-lg p-4 rounded-lg">
-										
-										<h4 className="mb-2">Entreprise</h4>
-
-										<Link to={`/companies/profile/${profile.companyId}`}>
-
-											<div className="flex items-center mb-2">
-
-												<div className="flex flex-1 items-center">
-
-													<img src={profile.company.photo.src} className="w-16 h-16 rounded-full" alt="" />
-
-													<div className="ml-2 font-medium text-gray-700">{ profile.company.name }</div>
-
-												</div>
-
-												<ExternalLink className="text-gray-700" size={20}/>
-
-											</div>
-
-										</Link>
-
-									</div>
-
-								) }
-
 								<div className="shadow-lg p-4 rounded-lg">
 									
 									<h4 className="mb-2">IDs</h4>
 
-									<div className="grid gap-1 grid-cols-3">
+									<div className="grid gap-2 grid-cols-3">
 
 										{ profile.ids.map(photo => (
 

@@ -363,3 +363,17 @@ export const formatCompanyPayLink = ({ companyId, startDate, endDate }) => {
 
 	return `/revenues/company-pay-debts/${companyId}?startDate=${startDate}&endDate=${endDate}`;
 }
+
+export const getPermittedTransportRidesStatus = () => {
+
+	const status = {
+
+		...TRANSPORT_RIDE_STATUS
+	};
+
+	delete status.WAITING;
+
+	delete status.EXPIRED;
+
+	return status;
+}

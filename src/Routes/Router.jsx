@@ -16,6 +16,10 @@ const NotFoundPage = React.lazy(() => import('../Pages/NotFound/NotFoundPage'));
 
 import DriversRoutes from './DriversRoutes';
 
+import EnginesRoutes from './EnginesRoutes';
+
+import TransportRidesRoutes from './TransportRidesRoutes';
+
 const Router = () => {
 
 	const routes = useRoutes([
@@ -36,6 +40,10 @@ const Router = () => {
 		},
 
 		...DriversRoutes,
+
+		...EnginesRoutes,
+
+		...TransportRidesRoutes,
 
 		{
 			path : '*',

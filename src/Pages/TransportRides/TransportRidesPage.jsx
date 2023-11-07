@@ -1,32 +1,34 @@
 import React from "react";
 
-import useDriversStore from '../../Store/useDriversStore';
+import useTransportRidesStore from '../../Store/useTransportRidesStore';
 
-import { useDriversQuery } from "../../Queries/DriversQueries";
+import { useTransportRidesQuery } from "../../Queries/TransportRidesQueries";
 
 import { useEngineTypesQuery } from "../../Queries/EnginesQueries";
+
+import Search from "./Search";
 
 import { DataLoader } from "../../Components/Loaders";
 
 import { FetchErrorAlert } from "../../Components/Alerts";
 
-import Search from "./Search";
+import TransportRide from "./TransportRide";
 
-import Driver from "./Driver";
+import TransportRidesStats from "./TransportRidesStats";
 
 import GridList from "../../Components/GridList";
 
-import { DRIVER_ACCOUNT_STATUS } from "../../Constants/Constants";
+import { formatTransportRideStatus, getPermittedTransportRidesStatus } from "../../ComponentsUtilities/ComponentsUtilities";
 
-import { formatDriverAccountStatus } from "../../ComponentsUtilities/ComponentsUtilities";
+const TransportRidesPage = () => {
 
-const DriversPage = () => {
+	const STATUS = getPermittedTransportRidesStatus();
 
-	const { filters, setFilter } = useDriversStore();
+	const { filters, setFilter } = useTransportRidesStore();
 
-	const { data : engineTypes } = useEngineTypesQuery();
+	const { data : engineTypes = [] } = useEngineTypesQuery();
 
-	const { data : drivers, isLoading, isError, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useDriversQuery({
+	const { data : rides = [], isLoading, isError, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useTransportRidesQuery({
 
 		filters
 	});
@@ -41,11 +43,13 @@ const DriversPage = () => {
 
 	return (
 
-		<div id="drivers-page">
+		<div id="rides-page">
 
 			<div className="container mx-auto px-4">
 
-				<h1 className="font-bold first-letter:uppercase mb-8">gestion des chauffeurs</h1>
+				<h1 className="font-bold first-letter:uppercase mb-8">gestion des courses de transport</h1>
+
+				<TransportRidesStats/>
 
 				<hr className="my-6"/>
 
@@ -67,15 +71,15 @@ const DriversPage = () => {
 
 									<GridList
 
-										data={drivers}
-										renderElements={driver => (
+										data={rides}
+										renderElements={ride => (
 											
-											<Driver key={driver._id} driver={driver}/>
+											<TransportRide key={ride._id} ride={ride}/>
 										)}
 										fetchNextPage={fetchNextPage}
 										isFetchingNextPage={isFetchingNextPage}
 										hasNextPage={hasNextPage}
-										className="grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4"
+										className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
 									/>
 
 								</div>
@@ -94,9 +98,9 @@ const DriversPage = () => {
 													
 												<option value="">tous</option>
 
-												{ Object.values(DRIVER_ACCOUNT_STATUS).map(status => (
+												{ Object.values(STATUS).map(status => (
 
-													<option key={status} value={status}>{ formatDriverAccountStatus(status) }</option>
+													<option key={status} value={status}>{ formatTransportRideStatus(status) }</option>
 												)) }
 
 											</select>
@@ -105,7 +109,7 @@ const DriversPage = () => {
 
 										<div>
 
-											<div className="mb-2 text-stone-500">type</div>
+											<div className="mb-2 text-stone-500">type d'engin</div>
 											
 											<select onChange={handleFilterChange} name="engineType" value={filters.engineType} className="select select-primary w-full">
 													
@@ -140,4 +144,4 @@ const DriversPage = () => {
 	)
 }
 
-export default DriversPage;
+export default TransportRidesPage;

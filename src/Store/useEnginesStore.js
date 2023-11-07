@@ -6,8 +6,6 @@ const initState = {
 
 		engineType : '',
 
-		ownershipType : '',
-
 		status : '',
 
 		year : ''
