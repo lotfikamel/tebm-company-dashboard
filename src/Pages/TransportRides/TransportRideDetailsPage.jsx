@@ -302,7 +302,7 @@ const TransportRideDetailsPage = () => {
 										
 										</div>
 
-										<RevenuesStatus status={ride.revenuesStatus}/>
+										<RevenuesStatus status={ride.appRevenuesStatus}/>
 
 									</div>
 
