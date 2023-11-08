@@ -4,17 +4,22 @@ import Http from "../System/Http/Http";
 
 const ROUTES = {
 
+	fetchCompanyTotalRevenues : '/fetch/revenues/total',
+
 	fetchDriverTotalDebts : '/fetch/revenues/driver/debts/total',
-	fetchCompanyTotalDebts : '/fetch/revenues/company/debts/total',
+	fetchCompanyTotalDebts : '/fetch/revenues/debts/total',
 
 	fetchDriverDebts : '/fetch/revenues/driver/debts',
 	fetchMoreDriverDebts : '/fetch/revenues/driver/debts/more',
 
-	fetchCompanyRevenues : '/fetch/revenues/company',
-	fetchMoreCompanyRevenues : '/fetch/revenues/company/more',
+	fetchCompanyRevenues : '/fetch/revenues',
+	fetchMoreCompanyRevenues : '/fetch/revenues/more',
 	
-	fetchCompanyDebts : '/fetch/revenues/company/debts',
-	fetchMoreCompanyDebts : '/fetch/revenues/company/debts/more',
+	fetchCompanyDebts : '/fetch/revenues/debts',
+	fetchMoreCompanyDebts : '/fetch/revenues/debts/more',
+
+	fetchDriversDebtors : '/fetch/revenues/debtors',
+	fetchMoreDriversDebtors : '/fetch/revenues/debtors/more',
 }
 
 function fetchDriverTotalDebts ({ driverId, startDate, endDate }) {
@@ -39,7 +44,7 @@ function fetchDriverTotalDebts ({ driverId, startDate, endDate }) {
 	})
 }
 
-function fetchCompanyTotalDebts ({ companyId, startDate, endDate }) {
+function fetchCompanyTotalDebts ({ startDate, endDate }) {
 
 	return new Promise((resolve, reject) => {
 
@@ -47,7 +52,6 @@ function fetchCompanyTotalDebts ({ companyId, startDate, endDate }) {
 
 			params : {
 
-				companyId,
 				startDate,
 				endDate
 			}
@@ -61,17 +65,11 @@ function fetchCompanyTotalDebts ({ companyId, startDate, endDate }) {
 	})
 }
 
-function fetchCompanyTotalRevenues ({ companyId }) {
+function fetchCompanyTotalRevenues () {
 
 	return new Promise((resolve, reject) => {
 
-		Http.get(ROUTES.fetchCompanyTotalRevenues, {
-
-			params : {
-
-				companyId
-			}
-		}).then(response => {
+		Http.get(ROUTES.fetchCompanyTotalRevenues).then(response => {
 
 			return resolve(response.data.response)
 		}).catch(err => {
@@ -107,7 +105,7 @@ function fetchDriverDebts ({ driverId, filters, pageParam = null }) {
 	});
 }
 
-function fetchCompanyRevenues ({ companyId, filters, pageParam = null }) {
+function fetchCompanyRevenues ({ filters, pageParam = null }) {
 
 	return new Promise((resolve, reject) => {
 
@@ -119,7 +117,6 @@ function fetchCompanyRevenues ({ companyId, filters, pageParam = null }) {
 
 			params : {
 
-				companyId,
 				filters,
 				creationDate
 			}
@@ -133,7 +130,7 @@ function fetchCompanyRevenues ({ companyId, filters, pageParam = null }) {
 	});
 }
 
-function fetchCompanyDebts ({ companyId, filters, pageParam = null }) {
+function fetchCompanyDebts ({ filters, pageParam = null }) {
 
 	return new Promise((resolve, reject) => {
 
@@ -145,7 +142,6 @@ function fetchCompanyDebts ({ companyId, filters, pageParam = null }) {
 
 			params : {
 
-				companyId,
 				filters,
 				creationDate
 			}
@@ -159,6 +155,29 @@ function fetchCompanyDebts ({ companyId, filters, pageParam = null }) {
 	});
 }
 
+function fetchDriversDebtors ({ pageParam = null }) {
+
+	return new Promise((resolve, reject) => {
+
+		const skip = pageParam;
+
+		const route = skip ? ROUTES.fetchMoreDriversDebtors : ROUTES.fetchDriversDebtors;
+
+		Http.get(route, {
+
+			params : {
+
+				skip
+			}
+		}).then(response => {
+
+			return resolve(response.data.response);
+		}).catch(err => {
+
+			return reject(err);
+		})
+	});
+}
 
 export const useTransportRidesTypesTotalDebtsQuery = ({ startDate, endDate, ...config }) => {
 
@@ -168,9 +187,9 @@ export const useTransportRidesTypesTotalDebtsQuery = ({ startDate, endDate, ...c
 	})
 }
 
-export const useCompanyTotalRevenuesQuery = ({ companyId, ...config }) => {
+export const useCompanyTotalRevenuesQuery = (config) => {
 
-	return useQuery(['companyTotalRevenues', companyId], () => fetchCompanyTotalRevenues({ companyId }), {
+	return useQuery(['companyTotalRevenues'], fetchCompanyTotalRevenues, {
 
 		...config
 	})
@@ -184,9 +203,9 @@ export const useDriverTotalDebtsQuery = ({ driverId, startDate, endDate, ...conf
 	})
 }
 
-export const useCompanyTotalDebtsQuery = ({ companyId, startDate, endDate, ...config }) => {
+export const useCompanyTotalDebtsQuery = ({ startDate, endDate, ...config }) => {
 
-	return useQuery(['companyTotalDebts', companyId, startDate, endDate], () => fetchCompanyTotalDebts({ companyId, startDate, endDate }), {
+	return useQuery(['companyTotalDebts', startDate, endDate], () => fetchCompanyTotalDebts({ startDate, endDate }), {
 
 		...config
 	})
@@ -207,9 +226,9 @@ export const useDriverDebtsQuery = ({ driverId, filters, ...config }) => {
 	});
 }
 
-export const useCompanyRevenuesQuery = ({ companyId, filters, ...config }) => {
+export const useCompanyRevenuesQuery = ({ filters, ...config }) => {
 
-	return useInfiniteQuery(['companyRevenues', companyId, filters], ({ pageParam }) => fetchCompanyRevenues({ pageParam, companyId, filters }), {
+	return useInfiniteQuery(['companyRevenues', filters], ({ pageParam }) => fetchCompanyRevenues({ pageParam, filters }), {
 
 		getNextPageParam : (lastPage) => {
 
@@ -222,13 +241,28 @@ export const useCompanyRevenuesQuery = ({ companyId, filters, ...config }) => {
 	});
 }
 
-export const useCompanyDebtsQuery = ({ companyId, filters, ...config }) => {
+export const useCompanyDebtsQuery = ({ filters, ...config }) => {
 
-	return useInfiniteQuery(['companyDebts', companyId, filters], ({ pageParam }) => fetchCompanyDebts({ pageParam, companyId, filters }), {
+	return useInfiniteQuery(['companyDebts', filters], ({ pageParam }) => fetchCompanyDebts({ pageParam, filters }), {
 
 		getNextPageParam : (lastPage) => {
 
 			return lastPage.length > 0 ? lastPage[lastPage.length - 1].creationDate : undefined;
+		},
+
+		select : (data) => data.pages.flat(),
+
+		...config
+	});
+}
+
+export const useDriversDebtorsQuery = (config) => {
+
+	return useInfiniteQuery(['driversDebtors'], ({ pageParam }) => fetchDriversDebtors({ pageParam }), {
+
+		getNextPageParam : (lastPage, allPages) => {
+
+			return lastPage.length > 0 ? allPages.flat().length : undefined;
 		},
 
 		select : (data) => data.pages.flat(),

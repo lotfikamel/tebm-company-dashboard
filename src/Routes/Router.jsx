@@ -20,6 +20,10 @@ import EnginesRoutes from './EnginesRoutes';
 
 import TransportRidesRoutes from './TransportRidesRoutes';
 
+import RevenuesRoutes from './RevenuesRoutes';
+
+import DebtsRoutes from './DebtsRoutes';
+
 const Router = () => {
 
 	const routes = useRoutes([
@@ -44,6 +48,10 @@ const Router = () => {
 		...EnginesRoutes,
 
 		...TransportRidesRoutes,
+
+		...RevenuesRoutes,
+
+		...DebtsRoutes,
 
 		{
 			path : '*',

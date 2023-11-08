@@ -4,9 +4,9 @@ import AuthGuard from '../Guards/AuthGuard';
 
 const DebtsPage = React.lazy(() => import('../Pages/Debts/DebtsPage'));
 
-const DriversDebtorsPage = React.lazy(() => import('../Pages/Debts/DriversDebtorsPage'));
+const DebtsDetailsPage = React.lazy(() => import('../Pages/Debts/DebtsDetailsPage'));
 
-const CompaniesDebtorsPage = React.lazy(() => import('../Pages/Debts/CompaniesDebtorsPage'));
+const DriversDebtorsPage = React.lazy(() => import('../Pages/Debts/DriversDebtorsPage'));
 
 export default [
 
@@ -17,13 +17,14 @@ export default [
 
 			{
 				path : '',
-				element : <CompaniesDebtorsPage/>
+				index : true,
+				element : <DebtsDetailsPage/>
 			},
 
 			{
 				path : 'drivers',
 				element : <DriversDebtorsPage/>
-			},
+			}
 		]
 	}
 ];

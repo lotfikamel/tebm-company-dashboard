@@ -6,6 +6,8 @@ import { ExternalLink, Map, MapPin, Navigation } from "react-feather";
 
 import { useTransportRideDetailsQuery } from "../../Queries/TransportRidesQueries";
 
+import usePermissions from "../../Hooks/usePermissions";
+
 import { FetchErrorAlert } from "../../Components/Alerts";
 
 import { DataLoader } from "../../Components/Loaders";
@@ -21,6 +23,8 @@ import { formatDistance, formatFullName, formatPrice, formatTime, openDirectionI
 const TransportRideDetailsPage = () => {
 
 	const { rideId } = useParams();
+
+	const { isCompanyTransportRide } = usePermissions();
 
 	const { data : ride, isLoading, isError, refetch } = useTransportRideDetailsQuery({
 
@@ -302,7 +306,24 @@ const TransportRideDetailsPage = () => {
 										
 										</div>
 
-										<RevenuesStatus status={ride.appRevenuesStatus}/>
+										{ isCompanyTransportRide(ride) && (
+
+											<div className="flex justify-between">
+
+												<div>Revenus de l'entreprise</div>
+												
+												<RevenuesStatus status={ride.companyRevenuesStatus}/>
+											
+											</div>
+										) }										
+
+										<div className="flex justify-between">
+
+											<div>Revenus de l'application</div>
+											
+											<RevenuesStatus status={ride.appRevenuesStatus}/>
+										
+										</div>
 
 									</div>
 

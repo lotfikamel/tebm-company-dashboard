@@ -1,4 +1,4 @@
-import { COMPANY_ACCOUNT_STATUS, DRIVER_ACCOUNT_STATUS } from "../Constants/Constants";
+import { COMPANY_ACCOUNT_STATUS, DRIVER_ACCOUNT_STATUS, TRANSPORT_RIDE_TYPES } from "../Constants/Constants";
 
 const usePermissions = () => {
 
@@ -27,13 +27,19 @@ const usePermissions = () => {
 		return !!driver && ('engineId' in driver)
 	}
 
+	const isCompanyTransportRide = (ride) => {
+
+		return !!ride && ride.type === TRANSPORT_RIDE_TYPES.COMPANY_RIDE;
+	}
+
 	return {
 
 		isCompanyActive,
 		isDriverActive,
 		isDriverBlocked,
 		isDriverInactive,
-		hasEngineAttatched
+		hasEngineAttatched,
+		isCompanyTransportRide
 	}
 }
 

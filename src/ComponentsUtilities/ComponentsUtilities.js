@@ -359,11 +359,6 @@ export const formatDriverPayLink = ({ driverId, startDate, endDate }) => {
 	return `/revenues/driver-pay-debts/${driverId}?startDate=${startDate}&endDate=${endDate}`;
 }
 
-export const formatCompanyPayLink = ({ companyId, startDate, endDate }) => {
-
-	return `/revenues/company-pay-debts/${companyId}?startDate=${startDate}&endDate=${endDate}`;
-}
-
 export const getPermittedTransportRidesStatus = () => {
 
 	const status = {
