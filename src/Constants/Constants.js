@@ -1,6 +1,6 @@
 export const APP_NAME = 'T.E.B.M';
 
-export const URL = process.env.NODE_ENV === 'development' ? 'http://192.168.240.164:3000/company' : 'https://api.tebm-dz.com/company';
+export const URL = process.env.NODE_ENV === 'development' ? 'http://192.168.244.164:3000/company' : 'https://api.tebm-dz.com/company';
 
 export const APP_KEY = '9AHgPCSP/PkzUinayPElBkB25qbj0+4/HWlupPVnsuQ=';
 
