@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { Calendar, Camera, Key, Mail, Phone, Star, Truck, User, Users } from 'react-feather';
+import { Calendar, Key, Mail, Phone, Star, Truck, Users } from 'react-feather';
 
 import { openLightbox } from "../../ComponentsUtilities/ComponentsUtilities";
 
