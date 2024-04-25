@@ -7,8 +7,12 @@ import { openLightbox } from "../../ComponentsUtilities/ComponentsUtilities";
 import { useCompanyProfileQuery } from "../../Queries/ProfileQueries";
 
 import Status from './Status';
+
 import Stat from '../../Components/Stat';
+
 import MaterialSymbolIcon from '../../Components/MaterialSymbolIcon';
+
+import { DataLoader } from '../../Components/Loaders';
 
 const ProfilePage = () => {
 
