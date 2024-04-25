@@ -1,0 +1,1 @@
+import{C as n,l as s,Y as e}from"./index-199c3c1b.js";const T=()=>({isCompanyActive:t=>!!t&&t.status===n.ACTIVE,isDriverActive:t=>!!t&&t.status===s.ACTIVE,isDriverBlocked:t=>!!t&&t.status===s.BLOCKED,isDriverInactive:t=>!!t&&t.status===s.INACTIVE,hasEngineAttatched:t=>!!t&&"engineId"in t,isCompanyTransportRide:t=>!!t&&t.type===e.COMPANY_RIDE});export{T as u};

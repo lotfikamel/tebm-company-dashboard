@@ -1,0 +1,1 @@
+import{j as n,o as i}from"./index-199c3c1b.js";const x=({src:o,className:e,alt:s="",...m})=>{const t=()=>{i({images:[o],index:0})};return n.jsx("img",{onClick:t,src:o,alt:s,className:e})};export{x as I};

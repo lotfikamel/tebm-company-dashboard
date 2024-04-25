@@ -1,0 +1,1 @@
+import{j as e}from"./index-199c3c1b.js";import{S as o}from"./star-d66c6535.js";const l=({currentRating:a,onRatingChange:t,active:i=!1,starSize:n=25})=>{const m=s=>{i&&t(s)};return e.jsx("div",{className:"flex items-center space-x-2",children:[...Array(a)].map((s,r)=>e.jsx("div",{onClick:()=>m(r+1),children:e.jsx(o,{size:n,className:"text-amber-500"})},r))})};export{l as F};
