@@ -1,4 +1,4 @@
-export const APP_NAME = 'T.E.B.M';
+export const APP_NAME = 'YATI';
 
 export const URL = process.env.NODE_ENV === 'development' ? 'http://tebm.com:3000/company' : 'https://api.tebm-dz.com/company';
 
