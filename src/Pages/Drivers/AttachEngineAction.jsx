@@ -55,7 +55,7 @@ const ResultsModal = ({ modalId, results, driver }) => {
 
 					{ results.length === 0 ? (
 
-						<p className="text-gray-500 text-xl text-center">Aucun engin trouvé.</p>
+						<p className="text-gray-500 text-xl text-center">Aucun véhicule trouvé.</p>
 					) : (					
 
 						<div>
@@ -143,7 +143,7 @@ const AttachEngineAction = ({ driver }) => {
 
 		<div id="licence-plate-search" className="bg-white shadow-lg rounded-xl p-4 space-y-4">
 
-			<h4 className="first-letter:uppercase font-medium">attachez un engin</h4>
+			<h4 className="first-letter:uppercase font-medium">attachez un véhicule</h4>
 
 			<input
 

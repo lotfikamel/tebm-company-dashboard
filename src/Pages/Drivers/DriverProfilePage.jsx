@@ -180,7 +180,7 @@ const DriverProfilePage = () => {
 										
 										<div className="flex justify-between items-center">
 
-											<h4 className="mb-2">Engin</h4>
+											<h4 className="mb-2">Véhicule</h4>
 
 											<DetachEngineAction driver={profile}/>
 

@@ -49,7 +49,7 @@ const LicencePlateResultsModal = ({ modalId, results, setResults }) => {
 
 					{ results.length === 0 ? (
 
-						<p className="text-gray-500 text-xl text-center">Aucun engin trouvé.</p>
+						<p className="text-gray-500 text-xl text-center">Aucun véhicule trouvé.</p>
 					) : (					
 
 						<div>

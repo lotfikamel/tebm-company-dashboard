@@ -273,9 +273,9 @@ export function formatEngineOwnershipType (type) {
 
 	const formats = {
 
-		[ENGINE_OWNERSHIP_TYPES.COMPANY_ENGINE] : 'engin d\'entreprise',
+		[ENGINE_OWNERSHIP_TYPES.COMPANY_ENGINE] : 'véhicule d\'entreprise',
 	
-		[ENGINE_OWNERSHIP_TYPES.DRIVER_ENGINE] : 'engin de chauffeur'
+		[ENGINE_OWNERSHIP_TYPES.DRIVER_ENGINE] : 'véhicule de chauffeur'
 	}
 
 	return formats[type]

@@ -113,7 +113,7 @@ const TransportRideDetailsPage = () => {
 
 									<div className="shadow-lg bg-white p-5 rounded-xl">
 
-										<h4 className="font-medium mb-4">Engin</h4>
+										<h4 className="font-medium mb-4">Véhicule</h4>
 
 										<Link to={`/engines/details/${ride.engineId}`}>
 

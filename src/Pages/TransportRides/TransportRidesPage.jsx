@@ -109,7 +109,7 @@ const TransportRidesPage = () => {
 
 										<div>
 
-											<div className="mb-2 text-stone-500">type d'engin</div>
+											<div className="mb-2 text-stone-500">type d'véhicule</div>
 											
 											<select onChange={handleFilterChange} name="engineType" value={filters.engineType} className="select select-primary w-full">
 													

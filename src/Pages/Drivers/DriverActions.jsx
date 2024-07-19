@@ -57,7 +57,7 @@ export const DetachEngineAction = ({ driver }) => {
 			<ConfirmAlert
 
 				modalId={detachAlert}
-				text="êtes-vous sûr de vouloir détachez cet engin de ce chauffeur ?"
+				text="êtes-vous sûr de vouloir détachez cet véhicule de ce chauffeur ?"
 				onConfirm={detachEngine}
 			/>
 
@@ -153,7 +153,7 @@ const DriverActions = ({ driver }) => {
 
 								<span><ExternalLink size={18}/></span>
 
-								<span className="first-letter:uppercase">voir l'engin</span>
+								<span className="first-letter:uppercase">voir le véhicule</span>
 
 							</Link>
 

@@ -53,7 +53,7 @@ const EngineDetailsPage = () => {
 
 					<>
 
-						<h1 className="font-semibold mb-6">Détails d'engin</h1>
+						<h1 className="font-semibold mb-6">Détails d'véhicule</h1>
 
 						<div className="grid gap-4 grid-cols-12">
 

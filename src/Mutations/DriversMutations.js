@@ -66,7 +66,7 @@ function attachEngine ({ driverId, engineId }) {
 
 			if (err.response?.data) {
 
-				toast({ message : 'vous ne pouvez pas attachez cet engin a ce chauffeur.' })
+				toast({ message : 'vous ne pouvez pas attachez cet véhicule a ce chauffeur.' })
 			}
 
 			return reject(err);
